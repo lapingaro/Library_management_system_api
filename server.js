@@ -62,6 +62,17 @@ app.put ('/books/:id', async (req, res) => {
     res.status (500).json ({message: error.message});
   }
 });
+
+//DELETE A Book
+app.delete ('/books/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const book = await Book.findByIdAndDelete (id);
+    res.status (200).json (book);
+  } catch (error) {
+    res.status (500).json ({message: error.message});
+  }
+});
 mongoose
   .connect (
     'mongodb+srv://root:Ramzi3650@devadictapi.fk56ax2.mongodb.net/library_management?appName=devadictapi'
