@@ -1,11 +1,10 @@
 const mongoose = require ('mongoose');
 const bookSchema = mongoose.Schema (
   {
-    title: String,
-    author: String,
-    isbn: {type: String, unique: true},
-    totalCopies: Number,
-    availableCopies: Number,
+    title: {type: String, required: true},
+    author: {type: String, required: true},
+    isbn: {type: String, required: true, unique: true},
+    availableCopies: {type: Number, required: true},
   },
   {timestamps: true}
 );
