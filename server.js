@@ -1,6 +1,8 @@
 const express = require ('express');
 const mongoose = require ('mongoose');
 const bookRoutes = require ('./routes/bookRoutes');
+const borrowerRoutes = require ('./routes/borrowerRoutes');
+const borrowRoutes = require ('./routes/borrowRoutes');
 
 const app = express ();
 const port = 3000;
@@ -8,6 +10,8 @@ const port = 3000;
 // Middleware
 app.use (express.json ());
 app.use (express.urlencoded ({extended: false}));
+app.use ('/api/borrowers', borrowerRoutes);
+app.use ('/api/borrow', borrowRoutes);
 
 // Routes
 app.get ('/', (req, res) => {

@@ -3,7 +3,18 @@ const Book = require ('../models/bookModel');
 // CREATE book
 const createBook = async (req, res) => {
   try {
-    const book = await Book.create (req.body);
+    const {title, author, isbn, totalCopies} = req.body;
+
+    // Validate required fields
+    if (!title || !author || !isbn || !totalCopies) {
+      return res.status (400).json ({message: 'Missing required fields'});
+    }
+
+    const book = await Book.create ({
+      ...req.body,
+      availableCopies: totalCopies, // auto set
+    });
+
     res.status (201).json (book);
   } catch (error) {
     res.status (500).json ({message: error.message});
