@@ -1,6 +1,7 @@
 const Book = require ('../models/bookModel');
 const Borrower = require ('../models/borrowerModel');
 const BorrowRecord = require ('../models/borrowRecordModel');
+const DAILY_FEE = 5;
 
 const borrowBook = async (req, res) => {
   try {
@@ -51,34 +52,47 @@ const returnBook = async (req, res) => {
   try {
     const {recordId} = req.body;
 
-    // 1. Find borrow record
     const record = await BorrowRecord.findById (recordId);
     if (!record) {
       return res.status (404).json ({message: 'Borrow record not found'});
     }
 
-    // 2. Prevent double returns
     if (record.returned) {
       return res.status (400).json ({message: 'Book already returned'});
     }
 
-    // 3. Find book
     const book = await Book.findById (record.book);
     if (!book) {
       return res.status (404).json ({message: 'Book not found'});
     }
 
-    // 4. Mark record returned
+    const today = new Date ();
+
+    // 🔴 Calculate overdue days
+    let overdueDays = 0;
+    if (today > record.dueDate) {
+      overdueDays = Math.ceil (
+        (today - record.dueDate) / (1000 * 60 * 60 * 24)
+      );
+    }
+
+    //  Calculate late fee
+    const lateFee = overdueDays * DAILY_FEE;
+
+    // Update record
     record.returned = true;
-    record.returnDate = new Date ();
+    record.returnDate = today;
+    record.lateFee = lateFee;
     await record.save ();
 
-    // 5. Increase available copies
+    // Restore book copy
     book.availableCopies += 1;
     await book.save ();
 
     res.status (200).json ({
       message: 'Book returned successfully',
+      overdueDays,
+      lateFee,
       record,
     });
   } catch (error) {
@@ -88,13 +102,28 @@ const returnBook = async (req, res) => {
 
 const getBorrowHistory = async (req, res) => {
   try {
-    const history = await BorrowRecord.find ()
-      .populate ('borrower', 'name email memberId') // return borrower fields
-      .populate ('book', 'title author isbn'); // return book fields
+    const {page = 1, limit = 10, borrowerId, returned} = req.query;
+
+    const query = {};
+
+    // Optional filters
+    if (borrowerId) query.borrower = borrowerId;
+    if (returned !== undefined) query.returned = returned === 'true';
+
+    const records = await BorrowRecord.find (query)
+      .populate ('borrower', 'name email memberId')
+      .populate ('book', 'title author isbn')
+      .skip ((page - 1) * limit)
+      .limit (Number (limit))
+      .sort ({createdAt: -1});
+
+    const total = await BorrowRecord.countDocuments (query);
 
     res.status (200).json ({
-      message: 'Borrow history fetched successfully',
-      history,
+      total,
+      page: Number (page),
+      pages: Math.ceil (total / limit),
+      records,
     });
   } catch (error) {
     res.status (500).json ({message: error.message});

@@ -12,10 +12,6 @@ const borrowRecordSchema = new mongoose.Schema (
       ref: 'Book',
       required: true,
     },
-    borrowDate: {
-      type: Date,
-      default: Date.now,
-    },
     dueDate: {
       type: Date,
       required: true,
@@ -23,6 +19,13 @@ const borrowRecordSchema = new mongoose.Schema (
     returned: {
       type: Boolean,
       default: false,
+    },
+    returnDate: {
+      type: Date,
+    },
+    lateFee: {
+      type: Number,
+      default: 0,
     },
   },
   {timestamps: true}
