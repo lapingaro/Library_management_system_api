@@ -68,7 +68,7 @@ const returnBook = async (req, res) => {
 
     const today = new Date ();
 
-    // 🔴 Calculate overdue days
+    //  Calculate overdue days
     let overdueDays = 0;
     if (today > record.dueDate) {
       overdueDays = Math.ceil (

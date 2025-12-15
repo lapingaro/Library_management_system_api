@@ -7,12 +7,18 @@ const {
   getBookById,
   updateBook,
   deleteBook,
-} = require ('../Controllers/bookController');
+} = require ('../controllers/bookController');
 
-router.post ('/', createBook);
+const {protect} = require ('../middleware/authMiddleware');
+const {authorize} = require ('../middleware/roleMiddleware');
+
+// PUBLIC routes
 router.get ('/', getBooks);
 router.get ('/:id', getBookById);
-router.put ('/:id', updateBook);
-router.delete ('/:id', deleteBook);
+
+// LIBRARIAN-only routes
+router.post ('/', protect, authorize ('librarian'), createBook);
+router.put ('/:id', protect, authorize ('librarian'), updateBook);
+router.delete ('/:id', protect, authorize ('librarian'), deleteBook);
 
 module.exports = router;
