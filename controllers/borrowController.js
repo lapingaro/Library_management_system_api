@@ -1,6 +1,8 @@
 const Book = require ('../models/bookModel');
 const Borrower = require ('../models/borrowerModel');
 const BorrowRecord = require ('../models/borrowRecordModel');
+const Reservation = require ('../models/reservationModel');
+
 const DAILY_FEE = 5;
 
 const borrowBook = async (req, res) => {
@@ -68,7 +70,7 @@ const returnBook = async (req, res) => {
 
     const today = new Date ();
 
-    //  Calculate overdue days
+    // Calculate overdue days
     let overdueDays = 0;
     if (today > record.dueDate) {
       overdueDays = Math.ceil (
@@ -76,7 +78,7 @@ const returnBook = async (req, res) => {
       );
     }
 
-    //  Calculate late fee
+    // Calculate late fee
     const lateFee = overdueDays * DAILY_FEE;
 
     // Update record
@@ -89,10 +91,25 @@ const returnBook = async (req, res) => {
     book.availableCopies += 1;
     await book.save ();
 
+    // ✅ FULFILL RESERVATION (FIFO)
+    const reservation = await Reservation.findOne ({
+      book: book._id,
+      status: 'active',
+    }).sort ({reservedAt: 1});
+
+    if (reservation) {
+      reservation.status = 'fulfilled';
+      await reservation.save ();
+
+      book.availableCopies -= 1;
+      await book.save ();
+    }
+
     res.status (200).json ({
       message: 'Book returned successfully',
       overdueDays,
       lateFee,
+      reservationFulfilled: !!reservation,
       record,
     });
   } catch (error) {

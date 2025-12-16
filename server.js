@@ -5,6 +5,7 @@ const bookRoutes = require ('./routes/bookRoutes');
 const borrowerRoutes = require ('./routes/borrowerRoutes');
 const borrowRoutes = require ('./routes/borrowRoutes');
 const authRoutes = require ('./routes/authRoutes');
+const reservationRoutes = require ('./routes/reservationRoutes');
 
 const app = express ();
 const port = 3000;
@@ -15,6 +16,7 @@ app.use (express.urlencoded ({extended: false}));
 app.use ('/api/borrowers', borrowerRoutes);
 app.use ('/api/borrow', borrowRoutes);
 app.use ('/api/auth', authRoutes);
+app.use ('/api/reservations', reservationRoutes);
 
 // Routes
 app.get ('/', (req, res) => {
