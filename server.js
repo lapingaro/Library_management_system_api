@@ -28,9 +28,7 @@ app.use ('/api/books', bookRoutes);
 
 // MongoDB connection
 mongoose
-  .connect (
-    'mongodb+srv://root:Ramzi3650@devadictapi.fk56ax2.mongodb.net/library_management?appName=devadictapi'
-  )
+  .connect (mongoose.connect (process.env.MONGO_URI))
   .then (() => {
     app.listen (port, () => {
       console.log (`Server is running on port ${port}`);
