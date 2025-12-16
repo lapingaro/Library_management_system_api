@@ -26,13 +26,19 @@ app.get ('/', (req, res) => {
 // Use Books Routes
 app.use ('/api/books', bookRoutes);
 
-// MongoDB connection
+// Debug: Check if env variable is loaded
+console.log ('MONGO_URI exists:', !!process.env.MONGO_URI);
+console.log ('MONGO_URI type:', typeof process.env.MONGO_URI);
+
 mongoose
-  .connect (mongoose.connect (process.env.MONGO_URI))
+  .connect (process.env.MONGO_URI)
   .then (() => {
+    console.log ('Connected to MongoDB');
     app.listen (port, () => {
       console.log (`Server is running on port ${port}`);
     });
-    console.log ('Connected to MongoDB');
   })
-  .catch (error => console.log (error));
+  .catch (error => {
+    console.error ('MongoDB connection error:', error);
+    process.exit (1);
+  });
