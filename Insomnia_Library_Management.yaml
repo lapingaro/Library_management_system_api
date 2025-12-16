@@ -1,0 +1,410 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Library Management collection
+mimeType: application/x-www-form-urlencoded
+meta:
+  id: wrk_7cad1a49a2b4414f9d8a822546a55b94
+  created: 1765097821643
+  modified: 1765097821643
+  description: ""
+collection:
+  - name: library API
+    meta:
+      id: fld_4d76b33cddad4cbeb687ae4b10094b9a
+      created: 1765111595002
+      modified: 1765111595002
+      sortKey: -1765111595002
+      description: ""
+    children:
+      - url: http://localhost:3000/api/books
+        name: Save Books
+        meta:
+          id: req_624e7869e93c430bbebae1da63553b53
+          created: 1765111650699
+          modified: 1765785118537
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650699
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	
+            	"title": "Clean Code",
+              "author": "Robert C. Martin",
+              "isbn": "9780132350884",
+              "totalCopies": 5,
+              "availableCopies": 5
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        authentication:
+          type: bearer
+          token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5M2ZiODk0YzY2NGM1YjYxNjBmMjJmOCIsInJvbGUiOiJsaWJyYXJpYW4iLCJpYXQiOjE3NjU3ODQ1OTksImV4cCI6MTc2NTg3MDk5OX0.1pwvc5-Z0uqFHBpbLeUJ2UyiqtepphjbTfH8GB3J3Sc
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/books
+        name: Fetch Books
+        meta:
+          id: req_b986c3e6f1154b7abc8b03bd077c5d1d
+          created: 1765128402623
+          modified: 1765506342070
+          isPrivate: false
+          description: ""
+          sortKey: -1765128402623
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/books/6935941dc116f3247687d0e8
+        name: Fetch a Book by id
+        meta:
+          id: req_91461c75b0a5420cac94b7cdf72c93aa
+          created: 1765130059465
+          modified: 1765868260097
+          isPrivate: false
+          description: ""
+          sortKey: -1765120026661
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/books/69358b2275904920eda7cb09
+        name: Update a book in the library
+        meta:
+          id: req_116c5b4a51cf4b20b49158c4fdc83380
+          created: 1765131107976
+          modified: 1765868484377
+          isPrivate: false
+          description: ""
+          sortKey: -1765115838680
+        method: PUT
+        body:
+          mimeType: application/x-www-form-urlencoded
+          params:
+            - name: name
+              value: water blink
+              description: ""
+              disabled: false
+        headers:
+          - name: Content-Type
+            value: application/x-www-form-urlencoded
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/books/69358b2275904920eda7cb09
+        name: Delete a book
+        meta:
+          id: req_d1031b3df32e4c6cb1ac25481a86ae34
+          created: 1765133040272
+          modified: 1765868504348
+          isPrivate: false
+          description: ""
+          sortKey: -1765117932670.5
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/books?search=0061120081
+        name: Search Books
+        meta:
+          id: req_c64b95566e694795b162e980c0cd07e4
+          created: 1765304195172
+          modified: 1765659246657
+          isPrivate: false
+          description: ""
+          sortKey: -1765124214642
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/borrowers
+        name: Save Borrower
+        meta:
+          id: req_8b8256db59714e9c8aadd1b4b9abab4f
+          created: 1765500936549
+          modified: 1765501010344
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650649
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	
+            "name": "Chris Behint",
+              "email": "chrisbehint@gmail.com",
+              "memberId": "MBR001"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/borrow
+        name: Borrow a book
+        meta:
+          id: req_9af18f25417946288515c76440bf3145
+          created: 1765501773916
+          modified: 1765506499133
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650599
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	
+            "borrowerId": "693b6859484e9249849ab473",
+              "bookId": "693b7d8b8d142f7338e05c6b"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/borrow/return
+        name: Return a book
+        meta:
+          id: req_c8f6bc49332d4c6ab434ff310a7fea10
+          created: 1765504487467
+          modified: 1765504544933
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650549
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	
+            "recordId": "693b703f8ce2971548f3d884"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/borrow/
+        name: Get Borrow History
+        meta:
+          id: req_b2fb7021ce5a409e8946e3ac98581099
+          created: 1765505335656
+          modified: 1765661473056
+          isPrivate: false
+          description: ""
+          sortKey: -1765126308632.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/borrow/currently-borrowed
+        name: Get Current Borrow Books
+        meta:
+          id: req_3b5b0101063a4ea3945c0cd4d201abb3
+          created: 1765506126038
+          modified: 1765506146257
+          isPrivate: false
+          description: ""
+          sortKey: -1765125261637.25
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/register
+        name: Register User
+        meta:
+          id: req_c3c696dc05fe43c584c6f6835de0f904
+          created: 1765783634364
+          modified: 1765783834822
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650674
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "John User",
+              "email": "john@library.com",
+              "password": "123456",
+              "role": "user"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:3000/api/auth/login
+        name: Login
+        meta:
+          id: req_a2b79a6ee25e49e18febe1563e0072d9
+          created: 1765783997229
+          modified: 1765784031819
+          isPrivate: false
+          description: ""
+          sortKey: -1765111650661.5
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "admin@library.com",
+              "password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.1.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_84b3d300fa3e975d1c193f773125ad398874aaca
+    created: 1765097821649
+    modified: 1765097821649
+environments:
+  name: Base Environment
+  meta:
+    id: env_84b3d300fa3e975d1c193f773125ad398874aaca
+    created: 1765097821646
+    modified: 1765097821646
+    isPrivate: false
