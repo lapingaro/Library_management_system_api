@@ -26,7 +26,6 @@ app.get ('/', (req, res) => {
 // Use Books Routes
 app.use ('/api/books', bookRoutes);
 
-// Debug: Check if env variable is loaded
 console.log ('MONGO_URI exists:', !!process.env.MONGO_URI);
 console.log ('MONGO_URI type:', typeof process.env.MONGO_URI);
 
