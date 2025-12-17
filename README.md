@@ -1,6 +1,6 @@
-# 📚 Library Management System API
+#  Library Management System API
 
-A **RESTful Library Management System API** built with **Node.js, Express, MongoDB, and Mongoose**.
+ **RESTful Library Management System API** built with **Node.js, Express, MongoDB, and Mongoose**.
 
 This API allows libraries to manage **books, borrowers, borrowing operations, reservations, late fees**, and **user authentication** with **role-based access control**.
 
@@ -127,7 +127,9 @@ Library_management_system_api/
      - POST /api/auth/login
 
 *  Copy the returned JWT token
-* Send the token in request headers:
+*  Send the token in request headers:
+*  Authorization: Bearer <your_token>
+
 
 
 
