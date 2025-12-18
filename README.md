@@ -130,7 +130,7 @@ Library_management_system_api/
 *  Send the token in request headers:
 *  Authorization: Bearer <your_token>
 
-Authorization: Bearer <your_token>
+
 
 ---
 ## API Endpoints (Overview)
@@ -222,9 +222,9 @@ Authorization: Bearer <your_token>
 
 ## Author
  
- # Behint Benjamin
- # Library Management System API – Backend Project
- # Email: chrisbehint@gmail.com
+ ### Behint Benjamin
+ ### Library Management System API – Backend Project
+ ### Email: chrisbehint@gmail.com
 
     
    
