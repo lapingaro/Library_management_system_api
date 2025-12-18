@@ -181,7 +181,7 @@ Authorization: Bearer <your_token>
        - A due date is assigned
   
 
-    * Returning
+  * Returning
 
       - On return:
 
@@ -190,7 +190,7 @@ Authorization: Bearer <your_token>
        - Late fees are applied if necessary
     
 
-    * Reservations
+  * Reservations
 
      - If a book has no available copies:
 
@@ -200,7 +200,7 @@ Authorization: Bearer <your_token>
         
         - The earliest reservation is automatically fulfilled
     
-    * Security
+  * Security
 
      - Routes are protected using:
 
