@@ -113,7 +113,7 @@ Library_management_system_api/
      **Run the server:**
        node server.js
 
-    **Yous should see:**:
+    **You should see:**:
       * Successful connection to MongoDB
       * Server running on port 3000
 
