@@ -130,6 +130,112 @@ Library_management_system_api/
 *  Send the token in request headers:
 *  Authorization: Bearer <your_token>
 
+Authorization: Bearer <your_token>
+
+---
+## API Endpoints (Overview)
+   
+  * Auth
+
+      - POST /api/auth/register
+
+     - POST /api/auth/login
+  
+     
+  * Books
+
+      - GET /api/books
+
+     - POST /api/books (librarian only)
+
+     - PUT /api/books/:id (librarian only)
+
+     - DELETE /api/books/:id (librarian only)
+  
+
+    * Borrowing
+
+      - POST /api/borrow
+
+     - POST /api/borrow/return
+
+     - GET /api/borrow/history
+
+     - GET /api/borrow/current
+    
+
+    * Reservation
+
+      - POST /api/reservations
+
+---
+
+## Program Logic (How It Works)
+  
+   * Borrowing
+
+      - When a book is borrowed:
+
+       - Available copies are reduced
+
+       - A due date is assigned
+  
+
+    * Returning
+
+      - On return:
+
+       - Overdue days are calculated
+
+       - Late fees are applied if necessary
+    
+
+    * Reservations
+
+     - If a book has no available copies:
+
+        - Users can reserve it
+
+    - When a copy is returned:
+        
+        - The earliest reservation is automatically fulfilled
+    
+    * Security
+
+     - Routes are protected using:
+
+        - JWT authentication
+
+        - Role-based authorization middleware
+        
+---
+
+## Testing the API
+   Insomnia
+
+  * Make sure to:
+    
+     - Set request body to JSON
+
+     - Add Bearer token in the Authorization tab
+
+
+## Author
+ 
+ # Behint Benjamin
+ # Library Management System API – Backend Project
+ # Email: chrisbehint@gmail.com
+
+    
+   
+
+
+
+
+    
+
+
+
 
 
 
